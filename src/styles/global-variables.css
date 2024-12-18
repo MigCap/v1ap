@@ -1,0 +1,78 @@
+/* Global variables */
+:root {
+	/* Colors */
+	--color-dark: #000007;
+	--color-navy: #0a192f;
+	--color-dark-navy: #020c1b;
+	--color-darkest-navy: #01050b;
+	--color-light-navy: #172a45;
+	--color-dark-grey: #333f58;
+	--color-medium-grey: #2d3952;
+	--color-blue-grey: #293d5a;
+	--color-grey: #4c5772;
+	--color-light-grey: #606a86;
+	--color-slate: #8892b0;
+	--color-light-slate: #a8b2d1;
+	--color-lightest-slate: #ccd6f6;
+	--color-off-white: #dce7ff;
+	--color-white: #e6f1ff;
+	--color-pink: #FF647F;
+	--color-yellow: #FFC464;
+	--color-orange: #FF9E64;
+	--color-green: #64ffda;
+	--color-blue: #71AFFF;
+	--color-dark-blue: #1D7FFC;
+	--color-highlight: rgba(41, 61, 90, 0.99);
+	--color-trans-green: rgba(100, 255, 218, 0.07);
+	--color-trans-navy: rgba(10, 25, 47, 0.7);
+	--color-shadow-navy: rgba(2, 12, 27, 0.9);
+
+	/* Gradients */
+	--gradient: linear-gradient(0.4turn, #64d6ff, var(--color-green));
+
+	/* Text Sizes */
+	--text-x-small: 0.75rem;
+	/* 12px */
+	--text-smallish: 0.8125rem;
+	/* 13px */
+	--text-small: 0.875rem;
+	/* 14px */
+	--text-medium: 1rem;
+	/* 16px */
+	--text-large: 1.125rem;
+	/* 18px */
+	--text-x-large: 1.25rem;
+	/* 20px */
+	--text-xx-large: 1.375rem;
+	/* 22px */
+	--text-h3: 1.875rem;
+	/* 30px */
+
+
+	/* Fonts */
+	--font-calibre: Calibre, San Francisco, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Roboto, Helvetica Neue, Segoe UI, Arial, sans-serif;
+	--font-sf-mono: SF Mono, Fira Code, Fira Mono, Roboto Mono, Lucida Console, Monaco, monospace;
+
+	/* Transitions */
+	--theme-transition: 0.2s ease-in-out;
+	--theme-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+	/* Others */
+	--margin: 20px;
+	--border-radius: 2px;
+
+	--loader-delay: 6;
+
+	--header-height: 100px;
+	--header-scroll-height: 70px;
+
+	--tab-height: 42px;
+	--tab-width: 120px;
+
+	/* Hamburger menu */
+	--hamburger-width: 30;
+	--hamburger-before: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+	--hamburger-before-active: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+	--hamburger-after: bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--hamburger-after-active: bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+}

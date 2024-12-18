@@ -3,13 +3,18 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@constants": ["src/constants/*"],
+      "@content": ["src/content/*"],
+      "@images": ["src/images/*"],
+      "@layouts": ["src/layouts/*"],
+      "@components": ["src/components/*"],
+      "@pages": ["src/pages/*"],
+      "@styles": ["src/styles/*"]
+    },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
-  },
-  "baseUrl": ".",
-  "paths": {
-    "@components/*": ["src/components/*"],
-    "@layouts/*": ["src/layouts/*"],
-    "@pages/*": ["src/pages/*"]
   }
 }

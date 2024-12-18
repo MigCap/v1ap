@@ -1,0 +1,80 @@
+---
+import Heading from "./Heading.astro";
+import * as about from "@/content/about/index.md";
+import { Content as AboutContent } from "@/content/about/index.md";
+
+const { title, skills } = about.frontmatter;
+---
+
+<section class="about_container section">
+  <Heading>{title}</Heading>
+  <div class="flex_container flex_between">
+    <div class="content_container inline-link">
+      <AboutContent />
+      <ul class="skills_container">
+        {
+          skills.map((skill: any) => {
+            return <li class="skill">{skill}</li>;
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+  import { config } from "@/constants/config.ts";
+
+  ScrollReveal().reveal(".about_container", config.srConfig());
+</script>
+
+<style>
+  .about_container {
+    position: relative;
+    max-width: 700px;
+  }
+  .flex_container {
+    align-items: flex-start;
+  }
+  .content_container {
+    width: 100%;
+    max-width: 750px;
+  }
+  .skills_container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(140px, 250px));
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .skill {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-family: var(--font-sf-mono);
+    font-size: var(--text-smallish);
+    color: var(--color-slate);
+    &:before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--color-green);
+      font-size: var(--text-small);
+      line-height: 12px;
+    }
+  }
+
+  @media screen and (max-width: 48em) {
+    .flex_container {
+      display: block;
+    }
+    .content_container {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 23.5em) {
+    .skills_container {
+      grid-template-columns: repeat(2, minmax(160px, 250px));
+    }
+  }
+</style>

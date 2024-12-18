@@ -1,0 +1,112 @@
+---
+import * as hero from "@/content/hero/index.md";
+import { Content as HeroContent } from "@/content/hero/index.md";
+import { config } from "@/constants/config.ts";
+
+const { title, name, subtitle, contactText } = hero.frontmatter;
+---
+
+<section class="hero-container section flex-center">
+  <h1 class="hi animated">{title}</h1>
+  <h2 class="name animated">{name}</h2>
+  <h3 class="subtitle animated">{subtitle}</h3>
+  <div class="blurb inline-link animated"><HeroContent /></div>
+  <div class="animated">
+    <a href={`mailto:${config.email}`} class="email-link big-button"
+      >{contactText}</a
+    >
+  </div>
+</section>
+
+<script>
+  import { animate, stagger } from "motion";
+
+  animate(
+    ".animated",
+    { opacity: 1, y: [50, 0] } as any,
+    {
+      delay: stagger(0.1),
+      duration: 0.5,
+      easing: [0.22, 0.03, 0.26, 1],
+    } as any
+  );
+</script>
+
+<style>
+  .hero-container {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    div {
+      width: 100%;
+    }
+  }
+  .hi {
+    color: var(--color-green);
+    margin: 0 0 20px 3px;
+    font-size: var(--text-medium);
+    font-family: var(--font-sf-mono);
+    font-weight: normal;
+  }
+  .name {
+    font-size: 80px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .subtitle {
+    font-size: 80px;
+    line-height: 1.1;
+    color: var(--color-slate);
+  }
+  .blurb {
+    margin-top: 25px;
+    width: 50%;
+    max-width: 500px;
+  }
+  .email-link {
+    font-size: var(--text-smallish);
+    margin-top: 50px;
+  }
+
+  @media screen and (max-width: 62.5em) {
+    .hi {
+      font-size: var(--text-small);
+    }
+    .name {
+      font-size: 70px;
+    }
+    .subtitle {
+      font-size: 70px;
+    }
+  }
+  @media screen and (max-width: 48em) {
+    .hero-container {
+      padding-top: 150px;
+    }
+    .hi {
+      font-size: var(--text-smallish);
+    }
+    .name {
+      font-size: 60px;
+    }
+    .subtitle {
+      font-size: 60px;
+    }
+  }
+  @media screen and (max-width: 30em) {
+    .name {
+      font-size: 50px;
+    }
+    .subtitle {
+      font-size: 50px;
+    }
+  }
+  @media screen and (max-width: 23.5em) {
+    .name {
+      font-size: 40px;
+    }
+    .subtitle {
+      font-size: 40px;
+    }
+  }
+</style>

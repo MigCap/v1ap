@@ -1,0 +1,40 @@
+---
+import MainHead from "@/layouts/MainHead.astro";
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <MainHead title={title} description={description} />
+  </head>
+  <body>
+    <div class="root">
+      <div class="container">
+        <main class="side-padding" id="content">
+          <slot />
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Add “loaded” class once the document has completely loaded.
+      addEventListener("load", () =>
+        document.documentElement.classList.add("loaded")
+      );
+    </script>
+  </body>
+</html>
+
+<style>
+  .main {
+    margin: 0 auto;
+    width: 100%;
+    counter-reset: section;
+  }
+</style>

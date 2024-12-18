@@ -1,0 +1,172 @@
+---
+import Heading from "./Heading.astro";
+// import { Content as JobsContent } from "@/content/jobs/index.md";
+const jobs = Object.values(
+  import.meta.glob("../content/jobs/**/*.md", { eager: true })
+);
+
+console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
+// const { title, skills } = jobs.frontmatter;
+---
+
+<section class="jobs_container section">
+  <Heading>Where I've Worked</Heading>
+  <div class="tabs_container">
+    <div class="tabs" role="tablist">
+      {
+        jobs.map(({ frontmatter: { company } }: any) => {
+          return <button class="tab link">{company}</button>;
+        })
+      }
+      <span class="highlighter"></span>
+    </div>
+    <div class="content_container">
+      {
+        jobs.map(({ frontmatter: { company } }: any) => {
+          return <button class="tab link">{company}</button>;
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+  import { config } from "@/constants/config.ts";
+
+  ScrollReveal().reveal(".jobs_container", config.srConfig());
+
+  function addTabListeners() {
+    const tabs = document.querySelectorAll(".tab");
+    const highlighter = document.querySelector(".highlighter") as HTMLElement;
+
+    if (!highlighter) {
+      console.error("Highlighter element not found in the DOM");
+    }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        highlighter.style.transform = `translateY(${i * config.tabHeight}px)`;
+      });
+    });
+  }
+
+  function addListeners() {
+    window.addEventListener("DOMContentLoaded", () => {
+      addTabListeners();
+    });
+    document.addEventListener("astro:after-swap", () => {
+      addTabListeners();
+    });
+  }
+
+  addListeners();
+</script>
+
+<style>
+  .jobs_container {
+    position: relative;
+    max-width: 700px;
+  }
+  .tabs_container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+  }
+  .tabs {
+    display: block;
+    position: relative;
+    width: max-content;
+    z-index: 3;
+  }
+  .tab {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    height: var(--tab-height);
+    padding: 0 20px 2px;
+    transition: var(--transition);
+    border-left: 2px solid var(--color-dark-grey);
+    text-align: left;
+    white-space: nowrap;
+    font-family: var(--font-sf-mono);
+    font-size: var(--text-smallish);
+    color: var(--color-light-grey);
+    &:hover,
+    &:focus {
+      background-color: var(--color-light-navy);
+    }
+  }
+  .tab.active {
+    color: var(--color-green);
+  }
+
+  .highlighter {
+    display: block;
+    background: var(--color-green);
+    width: 2px;
+    height: var(--tab-height);
+    border-radius: var(--border-radius);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: var(--theme-transition);
+    transition-delay: 0.1s;
+    z-index: 10;
+  }
+
+  .content_container {
+    position: relative;
+    padding-top: 14px;
+    padding-left: 30px;
+    flex-grow: 1;
+  }
+
+  @media screen and (max-width: 62.5em) {
+  }
+  @media screen and (max-width: 48em) {
+    .tab {
+      padding: 0 15px 2px;
+    }
+    .content_container {
+      padding-left: 20px;
+    }
+  }
+  @media screen and (max-width: 37.5em) {
+    .tabs_container {
+      display: block;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 30px;
+      width: 100%;
+      overflow-x: scroll;
+    }
+    .tab {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 15px;
+      text-align: center;
+      border-left: 0;
+      border-bottom: 2px solid var(--color-dark-grey);
+      min-width: 120px;
+    }
+    .highlighter {
+      width: 100%;
+      max-width: var(--tab-width);
+      height: 2px;
+      top: auto;
+      bottom: 0;
+    }
+    .content_container {
+      padding-left: 0;
+    }
+  }
+  @media screen and (max-width: 30em) {
+  }
+  @media screen and (max-width: 23.5em) {
+  }
+</style>

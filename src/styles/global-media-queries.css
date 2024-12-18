@@ -1,0 +1,45 @@
+/* Breakpoints for media queries */
+:root {
+    --breakpoint-giant: 90em;       /* 1440px */
+    --breakpoint-desktop: 62.5em;   /* 1000px */
+    --breakpoint-tablet: 48em;      /* 768px */
+    --breakpoint-thone: 37.5em;     /* 600px */
+    --breakpoint-phablet: 30em;     /* 480px */
+    --breakpoint-phone: 23.5em;     /* 376px */
+    --breakpoint-tiny: 20.625em;    /* 330px */
+}
+
+/* giant: 1440px / 16 = 90em */
+@media screen and (max-width: 90em) {
+    /* Add styles for giant screens here */
+}
+
+/* desktop: 1000px / 16 = 62.5em */
+@media screen and (max-width: 62.5em) {
+    /* Add styles for desktops here */
+}
+
+/* tablet: 768px / 16 = 48em */
+@media screen and (max-width: 48em) {
+    /* Add styles for tablets here */
+}
+
+/* thone: 600px / 16 = 37.5em */
+@media screen and (max-width: 37.5em) {
+    /* Add styles for small tablets here */
+}
+
+/* phablet: 480px / 16 = 30em */
+@media screen and (max-width: 30em) {
+    /* Add styles for phablets here */
+}
+
+/* phone: 376px / 16 = 23.5em */
+@media screen and (max-width: 23.5em) {
+    /* Add styles for phones here */
+}
+
+/* tiny: 330px / 16 = 20.625em */
+@media screen and (max-width: 20.625em) {
+    /* Add styles for tiny devices here */
+}
