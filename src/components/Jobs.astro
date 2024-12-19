@@ -1,12 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import Heading from "./Heading.astro";
-// import { Content as JobsContent } from "@/content/jobs/index.md";
-const jobs = Object.values(
-  import.meta.glob("../content/jobs/**/*.md", { eager: true })
-);
 
-console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
-// const { title, skills } = jobs.frontmatter;
+const jobs = (await getCollection("jobs")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
 <section class="jobs_container section">
@@ -14,7 +12,7 @@ console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
   <div class="tabs_container">
     <div class="tabs" role="tablist">
       {
-        jobs.map(({ frontmatter: { company } }: any) => {
+        jobs.map(({ data: { company } }: any) => {
           return <button class="tab link">{company}</button>;
         })
       }
@@ -22,8 +20,39 @@ console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
     </div>
     <div class="content_container">
       {
-        jobs.map(({ frontmatter: { company } }: any) => {
-          return <button class="tab link">{company}</button>;
+        jobs.map(async (job: any, i: number) => {
+          const {
+            data: { title, company, url, range },
+            render,
+          } = job;
+          const { Content } = await render();
+
+          return (
+            <div
+              class="tab_content inline-link"
+              role="tabpanel"
+              aria-labelledby={`job${i}`}
+              aria-hidden={i === 0 ? false : true}
+            >
+              <h4 class="job_title">
+                <span>{title}</span>
+                <span class="company">
+                  &nbsp;@&nbsp;
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                  >
+                    {company}
+                  </a>
+                </span>
+              </h4>
+              <h5 class="job_details">
+                <span>{range}</span>
+              </h5>
+              <Content />
+            </div>
+          );
         })
       }
     </div>
@@ -39,14 +68,32 @@ console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
   function addTabListeners() {
     const tabs = document.querySelectorAll(".tab");
     const highlighter = document.querySelector(".highlighter") as HTMLElement;
+    const tabContents = document.querySelectorAll(".tab_content");
 
-    if (!highlighter) {
-      console.error("Highlighter element not found in the DOM");
+    if (!tabs || !highlighter || !tabContents) {
+      console.error("Elements not found in the DOM");
+      return;
     }
+
     tabs.forEach((tab, i) => {
+      const tabContent = tabContents[i];
+      const isFirstTab = i === 0;
+
+      if (isFirstTab) {
+        tab.classList.add("active");
+        tabContent.classList.add("active");
+      }
+
       tab.addEventListener("click", () => {
         tabs.forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
+
+        tabContents.forEach((content) => content.classList.remove("active"));
+        tabContent.classList.add("active");
+
+        const isHidden = tabContent.getAttribute("aria-hidden") === "true";
+        tabContent.setAttribute("aria-hidden", isHidden ? "false" : "true");
+
         highlighter.style.transform = `translateY(${i * config.tabHeight}px)`;
       });
     });
@@ -123,9 +170,66 @@ console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
     padding-left: 30px;
     flex-grow: 1;
   }
-
-  @media screen and (max-width: 62.5em) {
+  .tab_content {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    visibility: hidden;
+    transition: var(--theme-transition);
+    transition-duration: 0s;
   }
+  .tab_content.active {
+    opacity: 1;
+    z-index: 2;
+    position: relative;
+    visibility: visible;
+    transition-duration: 0.5s;
+  }
+  .tab_content {
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      font-size: var(--text-large);
+      li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 5px;
+        &:before {
+          content: "▹";
+          position: absolute;
+          left: 0;
+          color: var(--color-green);
+          line-height: var(--text-x-large);
+        }
+      }
+    }
+  }
+  .job_title {
+    color: var(--color-lightest-slate);
+    font-size: var(--text-xx-large);
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .company {
+    color: var(--color-green);
+  }
+  .job_details {
+    font-family: var(--font-sf-mono);
+    font-size: var(--text-smallish);
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    color: var(--color-light-slate);
+    margin-bottom: 30px;
+    svg {
+      width: 15px;
+    }
+  }
+
   @media screen and (max-width: 48em) {
     .tab {
       padding: 0 15px 2px;
@@ -164,9 +268,5 @@ console.log("🚀 ~ jobs:", JSON.stringify(jobs, null, 2));
     .content_container {
       padding-left: 0;
     }
-  }
-  @media screen and (max-width: 30em) {
-  }
-  @media screen and (max-width: 23.5em) {
   }
 </style>

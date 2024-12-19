@@ -31,22 +31,14 @@
 	--gradient: linear-gradient(0.4turn, #64d6ff, var(--color-green));
 
 	/* Text Sizes */
-	--text-x-small: 0.75rem;
-	/* 12px */
-	--text-smallish: 0.8125rem;
-	/* 13px */
-	--text-small: 0.875rem;
-	/* 14px */
-	--text-medium: 1rem;
-	/* 16px */
-	--text-large: 1.125rem;
-	/* 18px */
-	--text-x-large: 1.25rem;
-	/* 20px */
-	--text-xx-large: 1.375rem;
-	/* 22px */
-	--text-h3: 1.875rem;
-	/* 30px */
+	--text-x-small: 0.75rem; /* 12px */
+	--text-smallish: 0.8125rem; /* 13px */
+	--text-small: 0.875rem; /* 14px */
+	--text-medium: 1rem; /* 16px */
+	--text-large: 1.125rem; /* 18px */
+	--text-x-large: 1.25rem; /* 20px */
+	--text-xx-large: 1.375rem; /* 22px */
+	--text-h3: 1.875rem; /* 30px */
 
 
 	/* Fonts */

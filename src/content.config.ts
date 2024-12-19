@@ -8,7 +8,7 @@ import { glob } from "astro/loaders";
 const jobs = defineCollection({
   loader: glob({ base: "./src/content/jobs", pattern: "**/*.md" }),
   schema: z.object({
-    date: z.string(),
+    date: z.coerce.date(),
     title: z.string(),
     location: z.string(),
     range: z.string(),
