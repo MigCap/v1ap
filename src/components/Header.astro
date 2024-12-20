@@ -89,7 +89,7 @@ import resume from "@/images/resume.pdf";
     public isMounted: any = false;
 
     public headerHeightInPixels: string = `${config.headerHeight}px`;
-    public headerScrollHeight: string = "70px";
+    public headerScrollHeightInPixels: string = "70px";
     public headerScrollDirection: any = "none";
 
     public headerContainer: any = document.querySelector(".header_container")!;
@@ -150,8 +150,8 @@ import resume from "@/images/resume.pdf";
       this.lastScrollTop = fromTop;
     }
     setHeaderContainerStylesBase() {
-      this.headerContainer.setAttribute("scroll-direction", "none");
       this.headerScrollDirection = "none";
+      this.headerContainer.setAttribute("scroll-direction", "none");
 
       this.headerContainer.style.height = this.headerHeightInPixels;
       this.headerContainer.style.transform = `translateY(0px)`;
@@ -160,14 +160,15 @@ import resume from "@/images/resume.pdf";
     setHeaderContainerStylesWhenScrollingUp() {
       this.headerScrollDirection = "up";
 
-      this.headerContainer.style.height = this.headerScrollHeight;
+      this.headerContainer.style.height = this.headerScrollHeightInPixels;
       this.headerContainer.style.transform = `translateY(0px)`;
       this.headerContainer.style.boxShadow = `0 2px 4px ${this.COLOR_SHADOW_NAVY}`;
     }
     setHeaderContainerStylesWhenScrollingDown() {
       this.headerScrollDirection = "down";
 
-      this.headerContainer.style.transform = `translateY(-${this.headerScrollHeight})`;
+      this.headerContainer.style.height = this.headerScrollHeightInPixels;
+      this.headerContainer.style.transform = `translateY(-${this.headerScrollHeightInPixels})`;
     }
 
     handleResize() {
@@ -224,6 +225,9 @@ import resume from "@/images/resume.pdf";
     pointer-events: auto !important;
     user-select: auto !important;
     width: 100%;
+    height: var(--header-height);
+    transform: translateY(0px);
+    box-shadow: none;
   }
   .nav-bar {
     width: 100%;
