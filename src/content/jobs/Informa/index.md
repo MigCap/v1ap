@@ -3,7 +3,7 @@ date: '2020'
 title: 'Front End Developer'
 company: 'Informa'
 location: 'Madrid, SPN'
-range: 'Dec 2020 - Present'
+range: 'Dec 2020 - Nov 2022'
 url: 'https://www.informa.es/'
 ---
 

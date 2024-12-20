@@ -2,17 +2,17 @@
 title: 'About Me'
 avatar: './me.png'
 skills:
-  - JavaScript, ES6+
+  - JavaScript. ES6+
   - Browser APIs
-  - React, Next.js, Astro
-  - Redux, Zustand
-  - SPA, SSR, PWA
+  - React. Next.js. Astro
+  - Redux. Zustand
+  - SPA. SSR. PWA
   - NestJS
-  - Nodejs, Express
-  - Webpack, Vite
+  - Nodejs. Express
+  - Webpack. Vite
   - HTML 5
   - CSS 3
-  - Styled Components, Sass
+  - Styled Components. Sass
   - Redis
   - DynamoDB
   - PostgreSQL

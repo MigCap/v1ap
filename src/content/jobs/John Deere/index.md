@@ -3,7 +3,7 @@ date: '2023'
 title: 'Full Stack Developer'
 company: 'John Deere'
 location: 'Kaiserslautern, GE'
-range: 'Dec 2020 - Present'
+range: 'Nov 2022 - Present'
 url: 'https://www.deere.com/en/roadbuilding/'
 ---
 
