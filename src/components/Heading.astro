@@ -1,66 +1,72 @@
 ---
+interface Props {
+  counter: number;
+  class?: string;
+}
 
+const { counter } = Astro.props;
 ---
-<h3><slot /></h3>
+<h3><span>{`0${counter}.`}</span><slot /></h3>
 
 <style>
+  span {
+    margin-right: 10px;
+    font-family: var(--font-sf-mono);
+    font-weight: normal;
+    color: var(--color-green);
+    font-size: var(--text-small);
+    position: relative;
+    bottom: 4px;
+  }
+  h3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 10px 0 40px;
+    width: 100%;
+    white-space: nowrap;
+    font-size: var(--text-h3);
+
+    &:after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 300px;
+      transition: 1s;
+      background-color: var(--color-medium-grey);
+      position: relative;
+      top: -5px;
+      margin-left: 20px;
+    }
+  }
+
+  @media screen and (max-width: 62.5em) {
     h3 {
-        position: relative;
-        display: flex;
-        align-items: center;
-        margin: 10px 0 40px;
-        width: 100%;
-        white-space: nowrap;
-        font-size: var(--text-h3);
-
-        &:before {
-            counter-increment: section;
-            content: '0' counter(section) '.';
-            margin-right: 10px;
-            font-family: var(--font-sf-mono);
-            font-weight: normal;
-            color: var(--color-green);
-            font-size: var(--text-small);
-            position: relative;
-            bottom: 4px;
-        }
-
         &:after {
-            content: '';
-            display: block;
-            height: 1px;
-            width: 300px;
-            transition: 1s;
-            background-color: var(--color-medium-grey);
-            position: relative;
-            top: -5px;
-            margin-left: 20px;
+            width: 200px;
         }
     }
+  }
+  @media screen and (max-width: 48em) {
+    span {
+      font-size: var(--text-large);
 
-    @media screen and (max-width: 62.5em) {
-        h3 {
-            &:after {
-                width: 200px;
-            }
+    }
+    h3 {
+      font-size: 24px;
+      &:before {
+          font-size: var(--text-large);
+      }
+      &:after {
+          width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 37.5em) {
+    h3 {
+        &:after {
+            width: margin-left: 10px;
         }
     }
-    @media screen and (max-width: 48em) {
-        h3 {
-            font-size: 24px;
-            &:before {
-                font-size: var(--text-large);
-            }
-            &:after {
-                width: 100%;
-            }
-        }
-    }
-    @media screen and (max-width: 37.5em) {
-        h3 {
-            &:after {
-                width: margin-left: 10px;
-            }
-        }
-    }
+  }
 </style>
