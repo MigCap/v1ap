@@ -1,6 +1,7 @@
 ---
-import Header from "@/components/Header.astro";
 import MainHead from "@/layouts/MainHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 
 interface Props {
   title?: string | undefined;
@@ -21,6 +22,7 @@ const { title, description } = Astro.props;
         <main class="side-padding" id="content">
           <slot />
         </main>
+        <Footer />
       </div>
     </div>
 

@@ -8,11 +8,13 @@ export const config = {
   siteLanguage: "en_US",
   siteImage: "../images/og.png",
 
-  googleVerification: "DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk",
-
   name: "Miguel Capellan",
   location: "Madrid, SPN",
   email: "miguelcapellan@gmail.com",
+
+  googleVerification: "DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk",
+  googleAnalyticsID: "G-VDTMNSJXEK",
+
   socialMedia: [
     {
       name: "Github",
@@ -42,8 +44,6 @@ export const config = {
       url: "#contact",
     },
   ],
-
-  googleAnalyticsID: "G-VDTMNSJXEK",
 
   headerHeight: 100,
   tabHeight: 42,

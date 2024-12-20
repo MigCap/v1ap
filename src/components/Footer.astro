@@ -1,0 +1,76 @@
+---
+import { config } from "@/constants/config.ts";
+import IconGithub from "@/components/icons/IconGithub.astro";
+import IconLinkedin from "@/components/icons/IconLinkedin.astro";
+---
+
+<footer class="footer_container flex-center">
+  <div class="social_container">
+    <ul class="social_items_list flex-between">
+      {
+        config.socialMedia.map(({ name, url }: any) => {
+          return (
+            <li class="social_item">
+              <a
+                href={url}
+                class="social_link"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label={name}
+              >
+                {name === "Github" && <IconGithub />}
+                {name === "Linkedin" && <IconLinkedin />}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+  <p class="copyright">
+    <a
+      href="https://github.com/MigCap"
+      class="github_link"
+      target="_blank"
+      rel="nofollow noopener noreferrer">Miguel Capellan | Developer</a
+    >
+  </p>
+</footer>
+
+<style>
+  .footer_container {
+    flex-direction: column;
+    padding: 15px;
+    background-color: var(--color-dark-navy);
+    color: var(--color-slate);
+    text-align: center;
+    height: auto;
+  }
+  .social_container {
+    color: var(--color-light-slate);
+    width: 100%;
+    max-width: 270px;
+    margin: 0 auto 10px;
+    display: none;
+  }
+  .social_link {
+    padding: 10px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .copyright {
+    margin: 5px 0 3px;
+  }
+  .github_link {
+    color: var(--color-slate);
+    font-family: var(--font-sf-mono);
+    font-size: var(--text-x-small);
+  }
+  @media screen and (max-width: 48em) {
+    .social_container {
+      display: block;
+    }
+  }
+</style>
