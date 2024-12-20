@@ -4,7 +4,7 @@ title: 'Front End Developer'
 company: 'Vass'
 location: 'Madrid, SPN'
 range: 'Dec 2018 - 2020'
-url: 'https://www.vass.es/'
+url: 'https://www.fundacionvass.org/'
 ---
 
 - Write modern, performant, maintainable code for a diverse array of client and internal projects. (Amadeus, Telefónica Movistar, OnTheSpot)
