@@ -10,4 +10,4 @@ tech:
   - Spotify API
 ---
 
-Spotify prototype I built just to keep getting skilled with ReactJS & Node / Express environments.
+Spotify prototype to keep getting skilled with ReactJS & Node / Express environments.

@@ -1,0 +1,61 @@
+---
+import { config } from "@/constants/config";
+---
+
+<div class="email_container">
+  <div class="email_link_wrapper">
+    <a href={`mailto:${config.email}`} class="email_link">{config.email}</a>
+  </div>
+</div>
+
+<script>
+  const emailContainer: any = document.querySelector(".email_container")!;
+  emailContainer.style.opacity = "0";
+  setTimeout(() => (emailContainer.style.opacity = "1"), 2000);
+</script>
+
+<style>
+  .email_container {
+    width: 40px;
+    position: fixed;
+    bottom: 0;
+    right: 40px;
+    color: var(--color-light-slate);
+    div {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  .email_link_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 90px;
+      margin: 0 auto;
+      background-color: var(--color-light-slate);
+    }
+  }
+  .email_link {
+    font-family: var(--font-sf-mono);
+    font-size: var(--text-x-small);
+    letter-spacing: 0.5px;
+    writing-mode: vertical-rl;
+    margin: 20px auto;
+    padding: 10px;
+  }
+  @media screen and (max-width: 62.5em) {
+    .email_container {
+      right: 25px;
+    }
+  }
+  @media screen and (max-width: 48em) {
+    .email_container {
+      display: none;
+    }
+  }
+</style>
