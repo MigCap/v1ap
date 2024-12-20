@@ -13,7 +13,11 @@ const jobs = (await getCollection("jobs")).sort(
     <div class="tabs" role="tablist">
       {
         jobs.map(({ data: { company } }: any) => {
-          return <button class="tab link">{company}</button>;
+          return (
+            <button class="tab link" aria-label={company}>
+              {company}
+            </button>
+          );
         })
       }
       <span class="highlighter"></span>
