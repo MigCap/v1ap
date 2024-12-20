@@ -3,17 +3,16 @@ import Heading from "@/components/Heading.astro";
 import IconGithub from "@/components/icons/IconGithub.astro";
 import IconExternal from "@/components/icons/IconExternal.astro";
 import { getCollection } from "astro:content";
-// import { Picture } from "astro:assets";
+import { Picture } from "astro:assets";
 
 const featured = await getCollection("featured");
 
-// const featuredImages: any = import.meta.glob(
-//   "../../content/featured/**/**/*.{jpg,png,webp}",
-//   {
-//     eager: true,
-//   }
-// );
-// console.log("🚀 ~ featuredImages:", featuredImages);
+const featuredImages: any = import.meta.glob(
+  "/src/content/featured/**/**/*.{jpg,png,webp}",
+  {
+    eager: true,
+  }
+);
 ---
 
 <section class="featured_container section flex-center" id="projects">
@@ -28,7 +27,14 @@ const featured = await getCollection("featured");
           collection,
         } = feature;
         const { Content: ContentProjectDescription } = await render();
-        const imgPath = `src/content/${collection}/${slug}/${cover.replace("./", "")}`;
+        const imgPath = `/src/content/${collection}/${slug}/${cover.replace("./", "")}`;
+
+        if (!featuredImages[imgPath]) {
+          throw new Error(`No image found for ${imgPath}`);
+        }
+
+        const currentImage = featuredImages[imgPath].default;
+
         return (
           <div class="project">
             <div class="content_container">
@@ -81,8 +87,14 @@ const featured = await getCollection("featured");
               </div>
             </div>
             <div class="img_container">
-              {/* <Picture src={cover.src} alt={title} /> */}
-              <img src={imgPath} alt={title} class="featured_img" />
+              <Picture
+                src={currentImage}
+                alt={title}
+                width={currentImage.width}
+                height={currentImage.height}
+                formats={["webp", "png"]}
+                class="featured_img"
+              />
             </div>
           </div>
         );
@@ -235,6 +247,7 @@ const featured = await getCollection("featured");
   }
   .featured_img {
     width: 100%;
+    height: 100%;
     max-width: 100%;
     vertical-align: middle;
     border-radius: var(--border-radius);
