@@ -12,9 +12,15 @@ const jobs = (await getCollection("jobs")).sort(
   <div class="tabs_container">
     <div class="tabs" role="tablist">
       {
-        jobs.map(({ data: { company } }: any) => {
+        jobs.map(({ data: { company } }: any, i: number) => {
           return (
-            <button class="tab link" aria-label={company}>
+            <button
+              class="tab link"
+              aria-label={company}
+              role="tab"
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-controls={`panel${i}`}
+            >
               {company}
             </button>
           );
@@ -35,6 +41,7 @@ const jobs = (await getCollection("jobs")).sort(
             <div
               class="tab_content inline-link"
               role="tabpanel"
+              id={`panel${i}`}
               aria-labelledby={`job${i}`}
               aria-hidden={i === 0 ? false : true}
             >
