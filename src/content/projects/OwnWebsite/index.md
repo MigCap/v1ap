@@ -5,8 +5,7 @@ image: ''
 github: 'https://github.com/MigCap/v1gp'
 external: ''
 tech:
-  - React Js
-  - Gatsby
+  - Astro
 show: 'true'
 ---
 

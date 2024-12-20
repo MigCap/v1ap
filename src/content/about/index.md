@@ -2,25 +2,34 @@
 title: 'About Me'
 avatar: './me.png'
 skills:
-  - JavaScript, ES6+. Babel
+  - JavaScript, ES6+
   - Browser APIs
-  - ReactJS. Hooks.
-  - Next.js. Gatsby. Remix
-  - Redux. Saga. Recoil
-  - SPA. SSR. PWA
-  - NestJS.
-  - Nodejs. ExpressJs
-  - Webpack. Vite. Gulp
-  - HTML 5. CSS 3
-  - Styled Components. Sass
-  - NPM
-  - Firebase. Google Cloud. Redis. DynamoDB. PostgreSQL
-  - AWS. S3. Lambda. ECS. SQS. SNS. CloudWatch. Kinesis. EventBridge. Terraform
-  - Cloud Functions
-  - Wordpress. Adobe AEM
+  - React, Next.js, Astro
+  - Redux, Zustand
+  - SPA, SSR, PWA
+  - NestJS
+  - Nodejs, Express
+  - Webpack, Vite
+  - HTML 5
+  - CSS 3
+  - Styled Components, Sass
+  - Redis
+  - DynamoDB
+  - PostgreSQL
+  - AWS
+  - S3
+  - Lambda
+  - ECS
+  - SQS
+  - SNS
+  - CloudWatch
+  - Kinesis
+  - EventBridge
+  - Terraform
+  - Wordpress
+  - Adobe AEM
   - Git
-  - Sketch. Figma
-  - Adobe & Microsoft Suites
+  - Figma
 ---
 
 Hey there! I'm a developer who loves to deliver fully functional responsive products based on client requirements, using different technologies to enable optimum user experience. I focus on building consistent, solid and reusable design systems.
