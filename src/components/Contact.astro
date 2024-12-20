@@ -1,0 +1,64 @@
+---
+import Heading from "@/components/Heading.astro";
+import { getCollection } from "astro:content";
+const [contact] = await getCollection("contact");
+const { data, render } = contact;
+const { title, email } = data;
+const { Content: ContactContent } = await render();
+---
+
+<section class="contact_container section inline-link" id="contact">
+  <Heading class="green_heading">What's Next?</Heading>
+  <h4 class="title">{title}</h4>
+  <ContactContent />
+  <a
+    class="email_link big-button"
+    href={`mailto:${email}`}
+    target="_blank"
+    rel="nofollow noopener noreferrer"
+  >
+    Contact
+  </a>
+</section>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+  import { config } from "@/constants/config.ts";
+
+  ScrollReveal().reveal(".contact_container", config.srConfig());
+</script>
+
+<style>
+  .contact_container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 100px;
+  }
+  .green_heading {
+    display: block;
+    color: var(--color-green);
+    font-size: var(--text-medium);
+    font-family: var(--font-sf-mono);
+    font-weight: normal;
+    margin-bottom: 20px;
+    justify-content: center;
+    /* ${media.desktop`font-size: ${theme.fontSizes.small};`}; */
+    &:before {
+      bottom: 0;
+      font-size: var(--text-small);
+      /* ${media.desktop`font-size: ${theme.fontSizes.smallish};`}; */
+    }
+    &:after {
+      display: none;
+    }
+  }
+  .title {
+    margin: 0 0 20px;
+    font-size: 60px;
+    /* ${media.desktop`font-size: 50px;`}; */
+    /* ${media.tablet`font-size: 40px;`}; */
+  }
+  .email_link {
+    margin-top: 50px;
+  }
+</style>

@@ -1,14 +1,15 @@
 ---
-import Heading from "./Heading.astro";
-import * as about from "@/content/about/index.md";
-import { Content as AboutContent } from "@/content/about/index.md";
-
-const { title, skills } = about.frontmatter;
+import Heading from "@/components/Heading.astro";
+import { getCollection } from "astro:content";
+const [about] = await getCollection("about");
+const { data, render } = about;
+const { title, skills } = data;
+const { Content: AboutContent } = await render();
 ---
 
-<section class="about_container section">
+<section class="about_container section" id="about">
   <Heading>{title}</Heading>
-  <div class="flex_container flex_between">
+  <div class="flex_container flex-between">
     <div class="content_container inline-link">
       <AboutContent />
       <ul class="skills_container">

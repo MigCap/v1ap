@@ -1,0 +1,208 @@
+---
+import { getCollection } from "astro:content";
+import IconFolder from "@/components/icons/IconFolder.astro";
+import IconGithub from "@/components/icons/IconGithub.astro";
+import IconExternal from "@/components/icons/IconExternal.astro";
+const projects = (await getCollection("projects")).filter(
+  (project) => project.data.show === "true"
+);
+const GRID_LIMIT = 6;
+---
+
+<section class="projects_container section flex-center">
+  <h4 class="projects_title">Other Projects</h4>
+  <div class="projects_grid">
+    <div class="projects">
+      {
+        projects.map(async (project, i) => {
+          const { render, data } = project;
+          const { title, github, external, tech } = data;
+          const { Content: ProjectDescription } = await render();
+          return (
+            <div class="transition">
+              <div
+                class="project"
+                style={{
+                  transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+                }}
+              >
+                <div class="project_inner flex-between">
+                  <div class="project_top">
+                    <div class="project_header flex-between">
+                      <div class="folder">
+                        <IconFolder />
+                      </div>
+                      <div class="links">
+                        {github && (
+                          <a
+                            href={github}
+                            class="icon_link"
+                            target="_blank"
+                            rel="nofollow noopener noreferrer"
+                            aria-label="Github Link"
+                          >
+                            <IconGithub />
+                          </a>
+                        )}
+                        {external && (
+                          <a
+                            href={external}
+                            class="icon_link"
+                            target="_blank"
+                            rel="nofollow noopener noreferrer"
+                            aria-label="External Link"
+                          >
+                            <IconExternal />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <div class="project_name">
+                      {external ? (
+                        <a
+                          href={external}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="Visit Website"
+                        >
+                          {title}
+                        </a>
+                      ) : (
+                        title
+                      )}
+                    </div>
+                    <ProjectDescription class="project_description inline-link" />
+                  </div>
+                  <div class="project_bottom">
+                    <ul class="tech_list">
+                      {tech.map((tech: string) => (
+                        <li>{tech}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import ScrollReveal from "scrollreveal";
+  import { config } from "@/constants/config.ts";
+
+  ScrollReveal().reveal(".projects_container", config.srConfig());
+</script>
+
+<style>
+  .projects_container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .projects_title {
+    margin: 0 auto 50px;
+    font-size: var(--text-h3);
+    a {
+      display: block;
+    }
+  }
+  @media screen and (max-width: 48em) {
+    .projects_title {
+      font-size: 24px;
+    }
+  }
+  .projects_grid {
+    width: -webkit-fill-available;
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 0.7rem;
+      position: relative;
+    }
+  }
+  @media screen and (max-width: 62.5em) {
+    .projects_grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+  .project {
+    transition: var(--theme-transition);
+    &:hover,
+    &:focus {
+      .project_inner {
+        transform: translateY(-5px);
+        box-shadow: 0 2px 4px var(--color-shadow-navy);
+      }
+    }
+  }
+  .project_inner {
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 25px;
+    height: 100%;
+    border-radius: var(--border-radius);
+    transition: var(--theme-transition);
+    background-color: var(--color-light-navy);
+  }
+  .project_top {
+    min-width: -webkit-fill-available;
+  }
+  .project_header {
+    margin-bottom: 30px;
+  }
+  .folder {
+    color: var(--color-green);
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .links {
+    margin-right: -10px;
+    color: var(--color-light-slate);
+    .icon_link {
+      padding: 5px;
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .icon_link {
+    padding: 10px;
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+  .project_name {
+    margin: 0 0 10px;
+    font-size: var(--text-xx-large);
+    color: var(--color-lightest-slate);
+  }
+  .project_description {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  .tech_list {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    li {
+      font-family: var(--font-sf-mono);
+      font-size: var(--text-x-small);
+      color: var(--color-light-slate);
+      line-height: 2;
+      margin-right: 15px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+</style>
