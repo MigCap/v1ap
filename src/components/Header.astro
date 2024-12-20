@@ -63,6 +63,16 @@ import resume from "@/images/resume.pdf";
             })
           }
         </ol>
+        <a
+          href={resume}
+          class="side_bar_resume_link big-button"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          download="Miguel-Capellan-resume"
+        >
+          Resume
+          <IconDownload />
+        </a>
       </nav>
     </div>
   </div>
@@ -336,6 +346,7 @@ import resume from "@/images/resume.pdf";
     padding: 12px 10px;
   }
   .resume_link {
+    display: flex;
     margin-left: 10px;
     font-size: var(--text-smallish);
     svg {
@@ -400,6 +411,16 @@ import resume from "@/images/resume.pdf";
   .side_bar_nav_link {
     padding: 3px 20px 20px;
     width: 100%;
+  }
+  .side_bar_resume_link {
+    padding: 18px 50px;
+    margin: 10% auto 0;
+    width: max-content;
+    svg {
+      padding-left: 5px;
+      width: 15px;
+      height: 15px;
+    }
   }
 
   @media screen and (max-width: 62.5em) {
