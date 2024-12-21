@@ -4,9 +4,9 @@ title: 'Front End Developer'
 company: 'Vass'
 location: 'Madrid, SPN'
 range: 'Dec 2018 - 2020'
-url: 'https://www.fundacionvass.org/'
+url: 'https://vasscompany.com/'
 ---
 
-- Write modern, performant, maintainable code for a diverse array of client and internal projects. (Amadeus, Telefónica Movistar, OnTheSpot)
+- Developer for a diverse array of clients. (Amadeus, Movistar, OnTheSpot)
 - Agile environment. Scrum as methodology. Atlassian Suite.
-- Work with HTML5, CSS3, JavaScript (Vanilla, ES6), ReactJS, Redux, Saga, Thunk, Style Components, Sass, JQuery. Adobe AEM. Node.js, MongoDB. Git, SVN.
+- Work with HTML5, CSS3, JavaScript (Vanilla, ES6), ReactJS, Redux, Saga, Thunk, Style Components, Sass. Adobe AEM. Node.js, MongoDB. Git.

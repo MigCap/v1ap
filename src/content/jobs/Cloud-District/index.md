@@ -7,6 +7,6 @@ range: 'Oct 2018 - Nov 2018'
 url: 'https://www.clouddistrict.com/'
 ---
 
-- Internship where I mainly was prototyping web apps, managing dynamic React Components following Atomic Design standards.
-- Support of frontend department by implementing ReactJS fully functional Styled Components to include in apps.
-- Create fully responsive web layouts based on React components.
+- Internship where I mainly was prototyping a web app. Supporting of frontend department.
+- Creation of React Components following Atomic Design standards.
+- Work with HTML5, CSS3, JavaScript (ES6), ReactJS, Style Components. Git.
